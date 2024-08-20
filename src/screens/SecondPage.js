@@ -16,7 +16,7 @@ source={{ uri: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSE
     <Button title='geri' onPress={()=>{navigation.goBack()}}></Button>
 <Button   title='tekrarla sayfayı' onPress={()=>{navigation.push("SecondPage")}}></Button>
 
-    
+
 
 </ImageBackground>
     </View>

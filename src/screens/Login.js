@@ -4,7 +4,7 @@ import { loginUser } from '../../api';
 
 export default function Login({navigation}) {
     const[giris, setGiris]= useState({ad:"aug", sifre:"0000"})
-    const [user, setUser]=useState({user_name:"",password:""})
+    const [user, setUser]=useState({user_name:"aug",password:"111111"})
     // const[sifre, setSifre]=useState("");
     // const[ad, setAd]=useState("");
 
