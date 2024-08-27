@@ -52,19 +52,19 @@ export const loginUser = async (user) => {
 
 export  const fetchUserCount = async () => {
   try {
-    const response = await axios.get('http://192.168.1.108:5000/api/users/count');
+    const response = await axios.get(`${API_URL}/users/count`);
 
     return response.data;
   } catch (error) {
-    console.error('Kullanıcı sayısı alınırken hata oluştu:', error);
+    console.error("Kullanıcı sayısı alınırken hata oluştu:", error);
     
   }}
 
   export  const fetchCariCount = async () => {
     try {
-      const response = await axios.get('http://192.168.1.108:5000/api/caris/count');
+      const response = await axios.get(`${API_URL}/caris/count`);
   
-      return response.data;
+      return response.data;``
     } catch (error) {
       console.error('carisayısı alınırken hata oluştu:', error);
       
@@ -73,7 +73,7 @@ export  const fetchUserCount = async () => {
 
     export  const fetchFinanceCount = async () => {
       try {
-        const response = await axios.get('http://192.168.1.108:5000/api/finance/count');
+        const response = await axios.get(`${API_URL}/finance/count`);
     
         return response.data;
       } catch (error) {
@@ -82,7 +82,7 @@ export  const fetchUserCount = async () => {
       }}
       export  const fetchFinanceNOCount = async () => {
         try {
-          const response = await axios.get('http://192.168.1.108:5000/api/finance/count/nakitodeme');
+          const response = await axios.get(`${API_URL}/finance/count/nakitodeme`);
       
           return response.data;
         } catch (error) {
@@ -91,7 +91,7 @@ export  const fetchUserCount = async () => {
         }}
         export  const fetchFinanceNTCount = async () => {
           try {
-            const response = await axios.get('http://192.168.1.108:5000/api/finance/count/nakittahsilat');
+            const response = await axios.get(`${API_URL}/finance/count/nakittahsilat`);
         
             return response.data;
           } catch (error) {
@@ -100,7 +100,7 @@ export  const fetchUserCount = async () => {
           }}
           export  const fetchFinanceGiHCount = async () => {
             try {
-              const response = await axios.get('http://192.168.1.108:5000/api/finance/count/gidenhavale');
+              const response = await axios.get(`${API_URL}/finance/count/gidenhavale`);
           
               return response.data;
             } catch (error) {
@@ -109,7 +109,7 @@ export  const fetchUserCount = async () => {
             }}
             export  const fetchFinanceGeHCount = async () => {
               try {
-                const response = await axios.get('http://192.168.1.108:5000/api/finance/count/gelenhavale');
+                const response = await axios.get(`${API_URL}/finance/count/gelenhavale`);
             
                 return response.data;
               } catch (error) {
@@ -118,7 +118,7 @@ export  const fetchUserCount = async () => {
               }}
               export  const fetchFinancePTCount = async () => {
                 try {
-                  const response = await axios.get('http://192.168.1.108:5000/api/finance/count/postahsilat');
+                  const response = await axios.get(`${API_URL}/finance/count/postahsilat`);
               
                   return response.data;
                 } catch (error) {
@@ -127,7 +127,7 @@ export  const fetchUserCount = async () => {
                 }}
                 export  const fetchFinanceKKCount = async () => {
                   try {
-                    const response = await axios.get('http://192.168.1.108:5000/api/finance/count/kkodeme');
+                    const response = await axios.get(`${API_URL}/finance/count/kkodeme`);
                 
                     return response.data;
                   } catch (error) {
@@ -135,3 +135,15 @@ export  const fetchUserCount = async () => {
                     
                   }}
 
+                  // export const createUser = async (user) => {
+                  //   try {
+                  //     const response = await axios.post(`${API_URL}/users`, user);
+                  //     return response.data;
+                  //   } catch (error) {
+                  //     if (error.response && error.response.status === 409) {
+                  //       throw new Error("Kullanıcı zaten kayıtlı");
+                  //     }
+                  //     console.error('kayıt olurken hata oluştu:', error);
+                  //     throw error;
+                  //   }
+                  // };

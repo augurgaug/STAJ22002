@@ -1,7 +1,7 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity,ImageBackground } from 'react-native'
 import React, {useState} from 'react'
 import { loginUser } from '../../api';
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 export default function Login({navigation}) {
     const[giris, setGiris]= useState({ad:"aug", sifre:"0000"})
     const [user, setUser]=useState({user_name:"aug",password:"111111"})
@@ -45,8 +45,9 @@ if(!user.user_name && !user.password){
         else{
         try {
             const loggedInUser = await loginUser(user);
+            await AsyncStorage.setItem('username', user.user_name);
             console.log(loggedInUser);
-            navigation.navigate("HomePage",{user})
+            navigation.navigate("DrawNavigate",{user})
           } catch (error) {
             alert("Kullanıcı Adı veya Şifre Hatalı")
           }}
@@ -87,6 +88,15 @@ if(!user.user_name && !user.password){
          
          </TouchableOpacity>
 </View>
+
+
+<View >
+
+    <TouchableOpacity onPress={()=>{navigation.navigate("Register")}}>
+         <Text style={styles.button}>Kayıt Ol</Text> 
+         
+         </TouchableOpacity>
+</View>
     </View>
     </View>
   )
@@ -106,7 +116,7 @@ const styles=StyleSheet.create({
         backgroundColor:"#454545",
         alignItems:'center',
     },
-    container2:{
+    container2:{ 
         height:"auto",
         flex:0.9,
         minHeight:400,
