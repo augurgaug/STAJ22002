@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import React, { useEffect, useState} from 'react';
+import { View, Text, FlatList, StyleSheet ,TouchableOpacity } from 'react-native';
 import { getUser } from '../../api';
 
 
@@ -31,7 +31,7 @@ const UserList= () => {
   return (
     <View style={styles.view}>
       <View style={styles.title}>
-      <Text style={styles.titleText,{ flex: 0.5 }}>#</Text>
+      <Text style={[styles.titleText,{ flex: 0.5 }]}>#</Text>
 
         <Text style={styles.titleText}>Kullanıcı Adı</Text>
         <Text style={styles.titleText}>Şifre</Text>
@@ -41,9 +41,10 @@ const UserList= () => {
         data={veri}
         renderItem={({ item,index }) => (
           <View style={styles.row}>
-            <Text style={styles.column, {flex: 0.5 }}>{index+1}</Text>
+            <Text style={[styles.column, {flex: 0.5 }]}>{index+1}</Text>
             <Text style={styles.column}>{item.user_name}</Text>
             <Text style={styles.column}>{item.password}</Text>
+          
           </View>
         )}
         keyExtractor={item => item.id}

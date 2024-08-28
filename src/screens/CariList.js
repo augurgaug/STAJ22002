@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet,TouchableOpacity } from 'react-native';
 import { getCari } from '../../api';
+import {openURL,} from 'expo-linking'
+import CariDetail from '../components/CariDetail';
 
 
 
@@ -9,8 +11,7 @@ import { getCari } from '../../api';
 
 
 
-
-const CariList= () => {
+const CariList= ({navigation, route}) => {
   const [veri,setVeri]=useState();
   useEffect(()=>{
 
@@ -33,8 +34,9 @@ const CariList= () => {
       <View style={styles.header}>
       <Text style={styles.headerText}>#</Text>
 
-        <Text style={styles.headerText}>Kullanıcı Adı</Text>
-        <Text style={styles.headerText}>Şifre</Text>
+        <Text style={styles.headerText}>Ad</Text>
+        <Text style={styles.headerText}>Soyad</Text>
+        <Text style={styles.headerText}>Detay</Text>
   
       </View>
       <FlatList
@@ -44,6 +46,10 @@ const CariList= () => {
             <Text style={styles.cell}>{index+1}</Text>
             <Text style={styles.cell}>{item.name}</Text>
             <Text style={styles.cell}>{item.last_name}</Text>
+            <TouchableOpacity onPress={()=>navigation.navigate('CariDetail',item.id)} style={{alignItems:"center",borderRadius:8,flex:1,backgroundColor:"grey", paddingVertical:5}}>
+              <Text style={{color:"white"}}>DETAY</Text>
+            </TouchableOpacity>
+          
           </View>
         )}
         keyExtractor={item => item.id}
@@ -70,7 +76,7 @@ const styles = StyleSheet.create({
     },
     headerText: {
       flex: 1,
-      fontWeight: 'bold',
+      fontWeight: 'bold'
     },
     row: {
       flexDirection: 'row',
@@ -79,6 +85,6 @@ const styles = StyleSheet.create({
       borderColor: '#ddd',
     },
     cell: {
-      flex: 1,
+      flex: 1
     },
   });

@@ -36,6 +36,25 @@ export const getCari = async () => {
     throw error;
   }
 };
+export const getCariById = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/caris/${id}`);
+
+    return response.data;
+
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+  
+
+
+
+
+
+
 
 
 export const loginUser = async (user) => {
@@ -135,15 +154,15 @@ export  const fetchUserCount = async () => {
                     
                   }}
 
-                  // export const createUser = async (user) => {
-                  //   try {
-                  //     const response = await axios.post(`${API_URL}/users`, user);
-                  //     return response.data;
-                  //   } catch (error) {
-                  //     if (error.response && error.response.status === 409) {
-                  //       throw new Error("Kullanıcı zaten kayıtlı");
-                  //     }
-                  //     console.error('kayıt olurken hata oluştu:', error);
-                  //     throw error;
-                  //   }
-                  // };
+                  export const createUser = async (user) => {
+                    try {
+                      const response = await axios.post(`${API_URL}/users`, user);
+                      return response.data;
+                    } catch (error) {
+                      if (error.response && error.response.status === 409) {
+                        throw new Error("Kullanıcı zaten kayıtlı");
+                      }
+                      console.error('kayıt olurken hata oluştu:', error);
+                      throw error;
+                    }
+                  };

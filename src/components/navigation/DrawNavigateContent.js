@@ -6,7 +6,6 @@ import { faCircleArrowRight,faHouse,faHorse, faDatabase, faServer} from '@fortaw
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import React, { useEffect, useState } from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
 

@@ -13,6 +13,7 @@ import Content from './DrawNavigateContent'
 import Register from '../../screens/Register'
 import UserTable from '../databases/SQLite/UserTable'
 import TestAsyncStorageDb from '../databases/TestAsyncStorageDb'
+import CariDetail from '../CariDetail'
 
 
 
@@ -62,6 +63,7 @@ export default function StackNavigate() {
       <Stack.Screen name='UserList' component={UserList}></Stack.Screen>
       <Stack.Screen name='CariList' component={CariList}></Stack.Screen>
       <Stack.Screen name='FinanceList' component={FinanceList}></Stack.Screen>
+    <Stack.Screen name='CariDetail' component={CariDetail}  ></Stack.Screen>
       
       <Stack.Screen name='FourthPage' component={FourthPage}></Stack.Screen>
     </Stack.Navigator>
