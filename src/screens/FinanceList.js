@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { getFinance } from '../../api';
+import {styles} from '../css/listCss'
 
 
 
@@ -9,8 +10,7 @@ import { getFinance } from '../../api';
 
 
 
-
-const FinanceList= () => {
+const FinanceList= ({navigation}) => {
   const [veri,setVeri]=useState();
   useEffect(()=>{
 
@@ -32,23 +32,25 @@ const i =0;
     <View style={styles.container}>
       <View style={styles.header}>
         
-        <Text style={styles.headerText}>#</Text>
-        <Text style={styles.headerText}>ad</Text>
-        <Text style={styles.headerText}>syd</Text>
-        <Text style={styles.headerText}>miktar</Text>
-        <Text style={styles.headerText}>açıklama</Text>
+        <Text style={[styles.headerText,{flex:1}]}>#</Text>
+        <Text style={styles.headerText}>Ad</Text>
+        <Text style={styles.headerText}>Soyad</Text>
+        <Text style={styles.headerText}>Miktar</Text>
+        <Text style={[styles.headerText,{textAlign:"center"}]}>Detay</Text>
   
       </View>
       <FlatList
         data={veri}
         renderItem={({ item,index }) => (
-          <View style={styles.row}>
-            <Text style={styles.cell}>{index+1}</Text>
-            <Text style={styles.cell}>{item.cari.name}</Text>
-            <Text style={styles.cell}>{item.cari.last_name}</Text>
-            <Text style={styles.cell}>{item.miktar}</Text>
-            <Text style={styles.cell}>{item.aciklama} </Text>
-          </View>
+          <TouchableOpacity onPress={()=>navigation.navigate('FinanceDetail',item.id)} style={[styles.row,{ backgroundColor: index % 2 === 0 ? 'white' : '#D7D7D7' }]}>
+            <Text style={[styles.column,{flex:1}]}>{index+1}</Text>
+            <Text style={styles.column}>{item.cari.name}</Text>
+            <Text style={styles.column}>{item.cari.last_name}</Text>
+            <Text style={styles.column}>{item.miktar}</Text>
+
+            {/* <TouchableOpacity onPress={()=>navigation.navigate('FinanceDetail',item.id)} style={[styles.listButton,{ backgroundColor: index % 2 === 0 ? 'grey' : '#444444' }]}>
+              <Text style={{color:"white"}}>DETAY</Text> */}
+            </TouchableOpacity>
         )}
         keyExtractor={item => item.id}
       />
@@ -66,28 +68,3 @@ export default FinanceList;
 
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
-  },
-  header: {
-    flexDirection: 'row',
-    backgroundColor: '#f1f8ff',
-    padding: 10,
-  },
-  headerText: {
-    flex: 1,
-    fontWeight: 'bold',
-  },
-  row: {
-    flexDirection: 'row',
-    padding: 10,
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
-  },
-  cell: {
-    flex: 1,
-  },
-});

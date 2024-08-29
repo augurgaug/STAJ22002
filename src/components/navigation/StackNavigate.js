@@ -14,6 +14,8 @@ import Register from '../../screens/Register'
 import UserTable from '../databases/SQLite/UserTable'
 import TestAsyncStorageDb from '../databases/TestAsyncStorageDb'
 import CariDetail from '../CariDetail'
+import UserDetail from '../UserDetail'
+import FinanceDetail from '../FinanceDetail'
 
 
 
@@ -34,9 +36,9 @@ Content()
 
 
     <Drawer.Screen name="HomePage" component={HomePage}  options={{headerBackgroundContainerStyle:{},drawerInactiveBackgroundColor:"rgba(150,50,255,0.3)" , drawerActiveBackgroundColor:"rgba(42,195,200,0.3)",drawerActiveTintColor:"red",title:"Ana Menü",headerTitleStyle:{ fontSize:25, fontWeight:"bold"},headerBackVisible:false}}/>
-    <Drawer.Screen name="SecondPage" component={SecondPage} options={{ drawerInactiveBackgroundColor:"rgba(150,50,255,0.3)" , drawerActiveBackgroundColor:"rgba(255,255,204,1)",drawerActiveTintColor:"blue"}}/>
-    <Drawer.Screen name="SQLite" component={UserTable} options={{ drawerInactiveBackgroundColor:"rgba(150,50,255,0.3)" , drawerActiveBackgroundColor:"rgba(255,255,204,1)",drawerActiveTintColor:"blue"}}/>
-    <Drawer.Screen name="AsyncStorage" component={TestAsyncStorageDb} options={{ drawerInactiveBackgroundColor:"rgba(150,50,255,0.3)" , drawerActiveBackgroundColor:"rgba(255,255,204,1)",drawerActiveTintColor:"blue"}}/>
+    <Drawer.Screen name="SecondPage" component={SecondPage} options={{ drawerInactiveBackgroundColor:"rgba(150,50,255,0.3)" , drawerActiveBackgroundColor:"rgba(255,255,204,1)",drawerActiveTintColor:"blue",headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}/>
+    <Drawer.Screen name="SQLite" component={UserTable} options={{ drawerInactiveBackgroundColor:"rgba(150,50,255,0.3)" , drawerActiveBackgroundColor:"rgba(255,255,204,1)",drawerActiveTintColor:"blue",headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}/>
+    <Drawer.Screen name="AsyncStorage" component={TestAsyncStorageDb} options={{ drawerInactiveBackgroundColor:"rgba(150,50,255,0.3)" , drawerActiveBackgroundColor:"rgba(255,255,204,1)",drawerActiveTintColor:"blue",headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}/>
   </Drawer.Navigator>  
   )
 }
@@ -59,13 +61,15 @@ export default function StackNavigate() {
             headerStyle:{
                  backgroundColor:"rgba(0,999,0,1)",},}}></Stack.Screen>
                  
-      <Stack.Screen name='ThirthPage' component={ThirthPage}></Stack.Screen>
-      <Stack.Screen name='UserList' component={UserList}></Stack.Screen>
-      <Stack.Screen name='CariList' component={CariList}></Stack.Screen>
-      <Stack.Screen name='FinanceList' component={FinanceList}></Stack.Screen>
-    <Stack.Screen name='CariDetail' component={CariDetail}  ></Stack.Screen>
+      <Stack.Screen name='ThirthPage' component={ThirthPage} options={{headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
+      <Stack.Screen name='UserList' component={UserList}  options={{title:"Kullanıcı Listesi" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
+      <Stack.Screen name='CariList' component={CariList} options={{title:"Cari Listesi" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
+      <Stack.Screen name='FinanceList' component={FinanceList} options={{title:"Finans Listesi" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
+    <Stack.Screen name='CariDetail' component={CariDetail}  options={{title:"Cari Detay" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
+    <Stack.Screen name='UserDetail' component={UserDetail}  options={{title:"Kullanıcı Detay" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
+    <Stack.Screen name='FinanceDetail' component={FinanceDetail}  options={{title:"Finans Detay" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
       
-      <Stack.Screen name='FourthPage' component={FourthPage}></Stack.Screen>
+      <Stack.Screen name='FourthPage' component={FourthPage}  options={{headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
     </Stack.Navigator>
   )
 }

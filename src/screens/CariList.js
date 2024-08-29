@@ -3,6 +3,7 @@ import { View, Text, FlatList, StyleSheet,TouchableOpacity } from 'react-native'
 import { getCari } from '../../api';
 import {openURL,} from 'expo-linking'
 import CariDetail from '../components/CariDetail';
+import {styles} from '../css/listCss'
 
 
 
@@ -32,59 +33,29 @@ const CariList= ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-      <Text style={styles.headerText}>#</Text>
+      <Text style={[styles.headerText,{flex:1}]}>#</Text>
 
         <Text style={styles.headerText}>Ad</Text>
         <Text style={styles.headerText}>Soyad</Text>
-        <Text style={styles.headerText}>Detay</Text>
   
       </View>
       <FlatList
         data={veri}
         renderItem={({ item,index }) => (
-          <View style={styles.row}>
-            <Text style={styles.cell}>{index+1}</Text>
-            <Text style={styles.cell}>{item.name}</Text>
-            <Text style={styles.cell}>{item.last_name}</Text>
-            <TouchableOpacity onPress={()=>navigation.navigate('CariDetail',item.id)} style={{alignItems:"center",borderRadius:8,flex:1,backgroundColor:"grey", paddingVertical:5}}>
-              <Text style={{color:"white"}}>DETAY</Text>
+          <TouchableOpacity onPress={()=>navigation.navigate('CariDetail',item.id)} style={[styles.row,{ backgroundColor: index % 2 === 0 ? 'white' : '#D7D7D7' }]}>
+            <Text style={[styles.column,{flex:1}]}>{index+1}</Text>
+            <Text style={styles.column}>{item.name}</Text>
+            <Text style={styles.column}>{item.last_name}</Text>
+            {/* <TouchableOpacity onPress={()=>navigation.navigate('CariDetail',item.id)} style={[styles.listButton,{ backgroundColor: index % 2 === 0 ? 'grey' : '#444444' }]}>
+              <Text style={{color:"white"}}>DETAY</Text> */}
             </TouchableOpacity>
           
-          </View>
         )}
         keyExtractor={item => item.id}
       />
     </View>
   );
 };
-
-
-
 export default CariList;
 
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 16,
-      backgroundColor: '#fff',
-    },
-    header: {
-      flexDirection: 'row',
-      backgroundColor: '#f1f8ff',
-      padding: 10,
-    },
-    headerText: {
-      flex: 1,
-      fontWeight: 'bold'
-    },
-    row: {
-      flexDirection: 'row',
-      padding: 10,
-      borderBottomWidth: 1,
-      borderColor: '#ddd',
-    },
-    cell: {
-      flex: 1
-    },
-  });

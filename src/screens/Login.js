@@ -1,8 +1,10 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity,ImageBackground } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity,ImageBackground, ScrollView } from 'react-native'
 import React, {useState} from 'react'
 import { loginUser } from '../../api';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { styles } from '../css/login';
+import { styles } from '../css/loginCss';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faCircle, faCircleArrowRight} from '@fortawesome/free-solid-svg-icons';
 export default function Login({navigation}) {
     const[giris, setGiris]= useState({ad:"aug", sifre:"0000"})
     const [user, setUser]=useState({user_name:"aug",password:"111111"})
@@ -56,29 +58,29 @@ if(!user.user_name && !user.password){
     }
   return (
 
-    <View style={styles.lgnContainer}>
+    <ScrollView contentContainerStyle={styles.lgnContainer}>
         
 
 
 
-    <View style={styles.lgnContainer2}>
-      <Text style={styles.lgnText} >Login</Text>
+    <View style={styles.logContainer}>
+      <Text style={styles.lgnHeaderText} >Giriş Yap</Text>
+      <Text style={{fontSize:40}} >⭕⭕⭕</Text>
+      <Text style={{marginTop:10}} >or use your account</Text>
 
 
 
 
-    <View style={styles.lgnView1}>
-      <Text style={styles.lgnText1} >Ad:</Text>
-<TextInput  value={user.user_name} onChangeText={handleChance} style={styles.lgnTextInput}  placeholder='ad'/> 
+    <View style={styles.lgnViewInput}>
+<TextInput  value={user.user_name} onChangeText={handleChance} style={styles.lgnTextInput}  placeholder='Kullanıcı Adı'/> 
 
 </View>
 
 
 
 
-    <View  style={styles.lgnView1}>
-<Text style={styles.lgnText1}>Parola:</Text>
-<TextInput secureTextEntry={true} value={user.password} onChangeText={handleChance1} style={styles.lgnTextInput} placeholder='sifre'/>
+    <View  style={styles.lgnViewInput}>
+<TextInput secureTextEntry={true} value={user.password} onChangeText={handleChance1} style={styles.lgnTextInput} placeholder='Şifre'/>
 
 </View>
 
@@ -91,15 +93,44 @@ if(!user.user_name && !user.password){
 </View>
 
 
+
+    </View>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <View style={[styles.rgstrContainer,{marginTop:0, backgroundColor:"#F54336", justifyContent:"center",alignItems:"center"}]}>
+      <Text style={styles.rgstrHeaderText} >MERHABA!</Text>
+      <Text style={styles.rgstrText} >Kişisel bilgilerinizi girin ve bizimle yolculuğa başlayın</Text>
+
+
+
+
+   
+
+
+
 <View >
 
     <TouchableOpacity onPress={()=>{navigation.navigate("Register")}}>
-         <Text style={styles.lgnButton}>Kayıt Ol</Text> 
+         <Text style={styles.rgstrButton}>Kayıt Ol</Text> 
          
          </TouchableOpacity>
 </View>
     </View>
-    </View>
+    </ScrollView>
   )
 }
 

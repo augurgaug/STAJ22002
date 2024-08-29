@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import { View, Text, FlatList, StyleSheet ,TouchableOpacity } from 'react-native';
 import { getUser } from '../../api';
+import {styles} from '../css/listCss'
 
 
 
@@ -10,7 +11,7 @@ import { getUser } from '../../api';
 
 
 
-const UserList= () => {
+const UserList= ({navigation}) => {
   const [veri,setVeri]=useState();
   useEffect(()=>{
 
@@ -25,29 +26,31 @@ const UserList= () => {
       }
     }
     getfnc()
+    console.log(veri)
     },[])
 
 
   return (
     <View style={styles.view}>
-      <View style={styles.title}>
-      <Text style={[styles.titleText,{ flex: 0.5 }]}>#</Text>
+      <View style={styles.header}>
+      <Text style={[styles.headerText,{ flex: 1 }]}>#</Text>
 
-        <Text style={styles.titleText}>Kullanıcı Adı</Text>
-        <Text style={styles.titleText}>Şifre</Text>
+        <Text style={styles.headerText}>Kullanıcı Adı</Text>
+        <Text style={styles.headerText}>Şifre</Text>
   
       </View>
       <FlatList
         data={veri}
         renderItem={({ item,index }) => (
-          <View style={styles.row}>
-            <Text style={[styles.column, {flex: 0.5 }]}>{index+1}</Text>
+          <TouchableOpacity  onPress={()=>navigation.navigate('UserDetail',item.id)} style={[styles.row,{ backgroundColor: index % 2 === 0 ? 'white' : '#D7D7D7' }]}>
+            <Text style={[styles.column, {flex:1 }]}>{index+1}</Text>
             <Text style={styles.column}>{item.user_name}</Text>
             <Text style={styles.column}>{item.password}</Text>
-          
-          </View>
+            {/* <TouchableOpacity onPress={()=>navigation.navigate('UserDetail',item.id)} style={[styles.listButton,{ backgroundColor: index % 2 === 0 ? 'grey' : '#444444' }]}>
+              <Text style={{color:"white"}}>DETAY</Text> */}
+            </TouchableOpacity> 
         )}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id+1}
       />
     </View>
   );
@@ -57,29 +60,3 @@ const UserList= () => {
 
 export default UserList;
 
-
-const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
-  },
-  title: {
-    flexDirection: 'row',
-    backgroundColor: '#f1f8ff',
-    padding: 10,
-  },
-  titleText: {
-    flex: 1,
-    fontWeight: 'bold',
-  },
-  row: {
-    flexDirection: 'row',
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#ddd',
-  },
-  column: {
-    flex: 1,
-  },
-});

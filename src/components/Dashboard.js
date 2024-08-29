@@ -3,7 +3,7 @@ import React from 'react'
 import { Button, Card } from 'react-native-elements';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCircleArrowRight} from '@fortawesome/free-solid-svg-icons';
-
+import {styles} from '../css/dashboardCss'
 
 export default function Dashboard(props) {
   return (
@@ -13,49 +13,21 @@ export default function Dashboard(props) {
     <Card containerStyle={[styles.card, {backgroundColor: props.cardBackgroundColor}]}>
     <Card.Title > <Text style={styles.adet}> {props.count}   </Text></Card.Title>
     <Text  style={styles.Title}>{props.ad} </Text>
-    <Card.Divider style={{borderWidth:1 , borderColor:"white", marginBottom:0}} />
+    <Card.Divider style={styles.CardDivider} />
 
 
 
-    <TouchableOpacity  style={{backgroundColor:props.buttonBackgroundColor, width:'100%',  alignItems:"center",justifyContent:'center', flexDirection:"row",
-        height:40,color:"white", 
-    }} onPress={props.onPress}>
-      <Text style={{marginRight:10, color:"white", fontSize:17}} >Daha Fazla Bilgi
+    <TouchableOpacity  style={[{backgroundColor:props.buttonBackgroundColor}, styles.Button ]}
+     onPress={props.onPress}>
+      <Text style={styles.ButtonText} >Daha Fazla Bilgi
         
       </Text>
       <FontAwesomeIcon className='icon' size={30} icon={faCircleArrowRight} style={{color:"white",}} />
 
-    </TouchableOpacity>
-{/* <Button title='Daha Fazla Bilgi -->' buttonStyle={{backgroundColor:"#35AED9", width:'100%', margin:0, }} onPress={()=>{navigation.navigate(SecondPage)}}></Button> */}
-   
+    </TouchableOpacity>   
   </Card>
   )
 }
-
-const styles= StyleSheet.create({
-
-
-card:{borderRadius: 4, padding:0,paddingTop:10,borderColor:"grey", borderWidth:2},
-
-   
-
-
-adet:{color:"white",
-        fontSize: 50,
-
-     
-    },
-
-Title:{
-        fontSize: 18,
-        color:"white",
-        textAlign:"center",
-        fontWeight:"bold",
-     
-    },        
-
-        })
-
 
 
 

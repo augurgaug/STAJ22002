@@ -14,9 +14,9 @@ export const getUser = async () => {
 };
 
 
-export const getFinance = async () => {
+export const loginUser = async (user) => {
   try {
-    const response = await axios.get(`${API_URL}/finance`);
+    const response = await axios.post(`${API_URL}/users/login`, user);
 
     return response.data;
 
@@ -24,6 +24,23 @@ export const getFinance = async () => {
     throw error;
   }
 };
+
+
+export const getUserById = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/users/${id}`);
+
+    return response.data;
+
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
+
+
 
 
 export const getCari = async () => {
@@ -50,16 +67,9 @@ export const getCariById = async (id) => {
 
   
 
-
-
-
-
-
-
-
-export const loginUser = async (user) => {
+export const getFinance = async () => {
   try {
-    const response = await axios.post(`${API_URL}/users/login`, user);
+    const response = await axios.get(`${API_URL}/finance`);
 
     return response.data;
 
@@ -67,6 +77,27 @@ export const loginUser = async (user) => {
     throw error;
   }
 };
+
+export const getFinanceById = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/finance/${id}`);
+
+    return response.data;
+
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
+
+
+
+
+
+
+
 
 
 export  const fetchUserCount = async () => {

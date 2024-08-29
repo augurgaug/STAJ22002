@@ -1,11 +1,11 @@
-import { View, Text, TextInput, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, ScrollView, TouchableOpacity,Platform } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { getCariById } from '../../api';
 import AppInput from './AppInput';
 import * as Linking from 'expo-linking';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faPhone,faLocationDot} from '@fortawesome/free-solid-svg-icons';
-
+import {styles} from '../css/detailCss'
 
 
 export default function CariDetail({route}) {
@@ -29,10 +29,19 @@ useEffect(()=>{
     
     setAdres(` ${cari.mahalle} mahallesi  ${cari.sokak} sokak no:${cari.bina_no} ${cari.il } ${cari.ilce} `)
     
-            console.log(adres)
             },[cari,id]); 
+
+
+
+            const openMaps = () => {
+              const url = Platform.select({
+                ios: `http://maps.apple.com/?q=${adres}`,
+                android: `https://www.google.com/maps/search/?api=1&query=${adres}` 
+              });
+              Linking.openURL(url);
+            };
             return (
-    <ScrollView contentContainerStyle ={{ paddingTop:'10%'}}>
+    <ScrollView contentContainerStyle ={styles.detailContainer}>
       <View>
 
     <AppInput label="Ad" value={cari.name}/>  
@@ -52,29 +61,28 @@ useEffect(()=>{
     <AppInput label="Borç" value={JSON.stringify(cari.borc)}/> 
 
 
-
-{/* <TextInput  multiline={true}
-        numberOfLines={4}>{adres}</TextInput> */}
-
     </View>
 
-    <View style={{flexDirection:"row", justifyContent:"center",paddingVertical:'10%'}}>
+    <View style={styles.detailButtonView}>
+
 
 
       <TouchableOpacity 
-        onPress={()=>{Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${adres}`)}}
-        style={{borderWidth:2,borderColor:"grey",flexDirection:"row",backgroundColor:"#01A396", padding:15,marginLeft:5, width:'25%',alignItems:"center",borderRadius:12}}>
+        onPress={()=>{openMaps()}}
+        style={styles.detailGoButton}>
 
-        <Text style={{color:"white",fontWeight:"bold",fontSize:20}}>GİT  </Text>
+        <Text style={styles.detailButtonText}>GİT  </Text>
       <FontAwesomeIcon className='icon' size={30} icon={faLocationDot} style={{color:"white",}} />
 
     </TouchableOpacity>
 
+
+
             <TouchableOpacity 
             onPress={()=>Linking.openURL(`tel:${cari.tel_no}`)}
-             style={{borderWidth:2,borderColor:"grey", flexDirection:"row",backgroundColor:"#26A84C", padding:15,marginLeft:30,width:'25%',alignItems:"center", borderRadius:12}}>
+             style={styles.detailCallButton}>
 
-      <Text style={{color:"white", fontSize:20,fontWeight:"bold"}}>ARA  </Text>
+      <Text style={styles.detailButtonText}>ARA  </Text>
       <FontAwesomeIcon className='icon' size={30} icon={faPhone} style={{color:"white",}} />
 
             </TouchableOpacity>
