@@ -1,15 +1,32 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity,ImageBackground, ScrollView } from 'react-native'
-import React, {useState} from 'react'
-import { loginUser } from '../../api';
+import React, {useEffect, useState} from 'react'
+import { loginUser, updateUserToken } from '../../api';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { styles } from '../css/loginCss';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCircle, faCircleArrowRight} from '@fortawesome/free-solid-svg-icons';
+import {registerForPushNotificationsAsync} from '../components/notifications/Notifications'
+
 export default function Login({navigation}) {
     const[giris, setGiris]= useState({ad:"aug", sifre:"0000"})
     const [user, setUser]=useState({user_name:"aug",password:"111111"})
+    const [expoPushToken, setExpoPushToken] = useState('');
+    const [token, setToken]=useState('');
     // const[sifre, setSifre]=useState("");
     // const[ad, setAd]=useState("");
+
+
+useEffect(()=>{
+
+  registerForPushNotificationsAsync()
+  .then(token => setExpoPushToken(token ?? ''))
+  .catch((error) => setExpoPushToken(`${error}`));
+
+},[])
+
+
+
+
 
 
     const handleChance=(name)=>{
@@ -51,6 +68,22 @@ if(!user.user_name && !user.password){
             await AsyncStorage.setItem('username', user.user_name);
             console.log(loggedInUser);
             navigation.navigate("DrawNavigate",{user})
+
+           
+
+            await updateUserToken(loggedInUser.id, {
+              push_token:expoPushToken,
+          
+            });
+
+
+
+
+
+
+
+
+
           } catch (error) {
             alert("Kullanıcı Adı veya Şifre Hatalı")
           }}

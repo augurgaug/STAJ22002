@@ -93,6 +93,18 @@ export const getFinanceById = async (id) => {
 
 
 
+export const updateUserToken = async (id, user) => {
+  try {
+    const response = await axios.put(`${API_URL}/users/userr/${id}`, user);
+    return response.data;
+  } catch (error) {
+    console.error('kullanıcı güncellenirken hata oluştu:', error);
+    throw error;
+  }
+};
+
+
+
 
 
 

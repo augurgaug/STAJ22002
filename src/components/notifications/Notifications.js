@@ -41,7 +41,7 @@ function handleRegistrationError(errorMessage) {
   throw new Error(errorMessage);
 }
 
-async function registerForPushNotificationsAsync() {
+export  async function registerForPushNotificationsAsync() {
   if (Platform.OS === 'android') {
     Notifications.setNotificationChannelAsync('default', {
       name: 'default',
@@ -111,19 +111,42 @@ export default function NotificationsScreen() {
   }, []);
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
-      <Text>Your Expo push token: {expoPushToken}</Text>
-      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Title: {notification && notification.request.content.title} </Text>
-        <Text>Body: {notification && notification.request.content.body}</Text>
-        <Text>Data: {notification && JSON.stringify(notification.request.content.data)}</Text>
-      </View>
-      <Button
-        title="Press to Send Notification"
-        onPress={async () => {
-          await sendPushNotification(expoPushToken);
-        }}
-      />
-    </View>
+    
+
+
+<View style={{alignItems:"center",justifyContent:'center'}}>
+    <View style={{  alignItems: 'center', justifyContent: 'space-around',backgroundColor:"white", width:'90%', margin:15,  borderRadius:8,elevation:4 ,paddingBottom:30, marginTop:30}}>
+      
+    <View style={{flexDirection:"row", backgroundColor:"#CDCDCD",borderTopEndRadius:8,borderTopStartRadius:8,padding:10}}> 
+        <Text style={{flex:2,fontWeight:"bold", fontSize:17, color:"grey"}} >Push Token:</Text>
+
+        <Text style={{fontWeight:"bold", fontSize:18, flex:3}} >{expoPushToken}</Text>
+        </View>
+
+        <View style={{flexDirection:"row", padding:10, alignItems:"center",justifyContent:"center"}}> 
+        <Text style={{flex:2, color:"grey"}} >Mesaj Başlığı:</Text>
+        <Text>{notification && notification.request.content.title} </Text>
+        </View>
+
+
+        <View style={{flexDirection:"row", padding:10, alignItems:"center",justifyContent:"center"}}> 
+        <Text style={{flex:2, color:"grey"}} >Mesaj:</Text>
+        <Text>{notification && notification.request.content.body}</Text>
+        </View>
+      
+        <View style={{flexDirection:"row", padding:10, alignItems:"center",justifyContent:"center"}}> 
+        <Text style={{flex:2, color:"grey"}} >Data:</Text>
+        <Text>{notification && JSON.stringify(notification.request.content.data)}</Text>
+        </View>
+    
+
+
+
+
+
+
+
+    </View></View>
+
   );
 }
