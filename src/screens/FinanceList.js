@@ -36,7 +36,6 @@ const i =0;
         <Text style={styles.headerText}>Ad</Text>
         <Text style={styles.headerText}>Soyad</Text>
         <Text style={styles.headerText}>Miktar</Text>
-        <Text style={[styles.headerText,{textAlign:"center"}]}>Detay</Text>
   
       </View>
       <FlatList

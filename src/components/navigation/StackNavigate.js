@@ -16,7 +16,8 @@ import TestAsyncStorageDb from '../databases/TestAsyncStorageDb'
 import CariDetail from '../CariDetail'
 import UserDetail from '../UserDetail'
 import FinanceDetail from '../FinanceDetail'
-
+import CariList1 from '../lists/CariList'
+import NotificationsScreen from '../notifications/Notifications'
 
 
 const DrawNavigate=() =>{
@@ -39,6 +40,7 @@ Content()
     <Drawer.Screen name="SecondPage" component={SecondPage} options={{ drawerInactiveBackgroundColor:"rgba(150,50,255,0.3)" , drawerActiveBackgroundColor:"rgba(255,255,204,1)",drawerActiveTintColor:"blue",headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}/>
     <Drawer.Screen name="SQLite" component={UserTable} options={{ drawerInactiveBackgroundColor:"rgba(150,50,255,0.3)" , drawerActiveBackgroundColor:"rgba(255,255,204,1)",drawerActiveTintColor:"blue",headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}/>
     <Drawer.Screen name="AsyncStorage" component={TestAsyncStorageDb} options={{ drawerInactiveBackgroundColor:"rgba(150,50,255,0.3)" , drawerActiveBackgroundColor:"rgba(255,255,204,1)",drawerActiveTintColor:"blue",headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}/>
+    <Drawer.Screen name="Notification" component={NotificationsScreen} options={{ drawerInactiveBackgroundColor:"rgba(150,50,255,0.3)" , drawerActiveBackgroundColor:"rgba(255,255,204,1)",drawerActiveTintColor:"blue",headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}/>
   </Drawer.Navigator>  
   )
 }
@@ -63,7 +65,7 @@ export default function StackNavigate() {
                  
       <Stack.Screen name='ThirthPage' component={ThirthPage} options={{headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
       <Stack.Screen name='UserList' component={UserList}  options={{title:"Kullanıcı Listesi" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
-      <Stack.Screen name='CariList' component={CariList} options={{title:"Cari Listesi" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
+      <Stack.Screen name='CariList' component={CariList1} options={{title:"Cari Listesi" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
       <Stack.Screen name='FinanceList' component={FinanceList} options={{title:"Finans Listesi" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
     <Stack.Screen name='CariDetail' component={CariDetail}  options={{title:"Cari Detay" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>
     <Stack.Screen name='UserDetail' component={UserDetail}  options={{title:"Kullanıcı Detay" ,headerTitleStyle:{ fontSize:25, fontWeight:"bold"},}}></Stack.Screen>

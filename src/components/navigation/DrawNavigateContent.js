@@ -77,6 +77,13 @@ const Logout=async()=>{
   onPress={() => props.navigation.navigate('SQLite')}
 />
 
+<DrawerItem style={{ marginBottom:15}}
+  label="SQLite"
+  icon={()=> <FontAwesomeIcon className='icon' size={25} icon={faServer} style={{color:"white"}} />}
+
+  onPress={() => props.navigation.navigate('Notification')}
+/>
+
 
         </DrawerContentScrollView>
     {/* <View style={{borderTopWidth:1,borderColor:"grey"}}>
